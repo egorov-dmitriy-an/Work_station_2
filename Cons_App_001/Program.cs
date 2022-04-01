@@ -13,3 +13,6 @@ for (int i=0; i<15;i++)
 }
 Console.WriteLine("");
 
+int a = 1111;
+
+lk
