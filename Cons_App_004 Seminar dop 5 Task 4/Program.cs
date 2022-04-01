@@ -21,17 +21,10 @@ namespace ConsoleApp
                 return sum_array;
             }
 
-            int[][] full_array = new int[5][]; // метод заполнение массива 
-            full_array[0] = new int[new Random().Next(1, 11)];
-            full_array[1] = new int[new Random().Next(1, 11)];
-            full_array[2] = new int[new Random().Next(1, 11)];
-            full_array[3] = new int[new Random().Next(1, 11)];
-            full_array[4] = new int[new Random().Next(1, 11)];
-
             int[][] f_p_array = new int[5][];
             for (int j1 = 0; j1 < 5; j1++)
             {
-                int leng2 = new Random().Next(10);
+                int leng2 = new Random().Next(1, 10);
                 f_p_array[j1] = new int[leng2];
                 for (int j2 = 0; j2 < leng2; j2++)
                 {
