@@ -14,7 +14,7 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             Console.WriteLine("");
-            Console.WriteLine("================ Семинар 5 Задача 34 ================");
+            Console.WriteLine("================ Семинар 5 Задача 1 доп =============");
             int[] array_numb = new int[15];
             for (int i = 0; i < 15; i++)
             {
