@@ -22,7 +22,8 @@ namespace ConsoleApp
                 }
                 return text;
             }
-            Perevod(dvoid);
+            if(dvoid==0) text = "0";
+            else Perevod(dvoid);
             Console.Write("Это число в двоичной системе счисления: ");
             for (int i = 0; i < text.Length; i++) Console.Write(text[i]);
             Console.WriteLine("");
