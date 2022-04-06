@@ -20,14 +20,14 @@ namespace ConsoleApp
             Random rand = new Random();
             int k = rand.Next(1, 10);
             int l = rand.Next(1, 10);
-            int[,] klArray = new int[k, l];
+            int[,] randArray = new int[k, l];
 
             for (int i = 0; i < k; i++)
             {
                 for (int j = 0; j < l; j++)
                 {
-                    klArray[i, j] = rand.Next(10);
-                    Console.Write(klArray[i, j] + "  ");
+                    randArray[i, j] = rand.Next(10);
+                    Console.Write(randArray[i, j] + "  ");
                 }
                 Console.WriteLine("");
             }
@@ -44,7 +44,7 @@ namespace ConsoleApp
             int m = Convert.ToInt32(Console.ReadLine());
             Console.Write("Введите номер столбца массива: ");
             int n = Convert.ToInt32(Console.ReadLine());
-            PrintElement(klArray, m, n);
+            PrintElement(randArray, m, n);
             Console.WriteLine("=====================================================");
             Console.Write("Press any key to continue . . . ");
             Console.ReadKey(true);
