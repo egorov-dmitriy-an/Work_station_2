@@ -6,6 +6,7 @@
 // 5 9 2 3
 // 8 4 2 4
 // 1, 3->3
+
 using System;
 
 namespace ConsoleApp
