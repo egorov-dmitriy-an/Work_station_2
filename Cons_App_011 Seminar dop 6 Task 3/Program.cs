@@ -27,7 +27,7 @@ namespace ConsoleApp
                 }
                 return result;
             }
-            Console.WriteLine("Число N = 3 ^" + "{0: 0.001}", Step(number));
+            Console.WriteLine("Число N = 3 ^" + "{0: 0.000}", Step(number));
             Console.WriteLine("=====================================================");
             Console.Write("Press any key to continue . . . ");
             Console.ReadKey(true);
