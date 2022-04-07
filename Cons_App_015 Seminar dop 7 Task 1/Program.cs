@@ -21,49 +21,63 @@ namespace ConsoleApp
                 {
                     for (int j = 0; j < l; j++)
                     {
-                        currMatrix[i, j] = rand.Next(0, 10);
+                        currMatrix[i, j] = rand.Next(-9, 10);
                         Console.Write(currMatrix[i, j] + "     ");
                     }
                     Console.WriteLine("");
                 }
                 return currMatrix;
             }
-
-            int m = rand.Next(3, 5);
-            Console.WriteLine("m = " + m);
-            int n = rand.Next(3, 5);
-            Console.WriteLine("n = " + n);
-            Console.WriteLine("  Матрица А:");
-            int[,] matrixA = Matrix(m, n);
-            Console.WriteLine("");
-            Console.WriteLine("  Матрица В:");
-            int[,] matrixB = Matrix(n, m);
-            Console.WriteLine("");
-            Console.WriteLine("Матрица C = AB:");
-            int[,] matrixC = new int[n, m];
-
-            for (int i = 0; i < n; i++)
+            int Multiplication(int k, int l, int[,] matA, int[,] matB)
             {
-                for (int j = 0; j < m; j++)
+                int sum = 0;
+                int n = matA.GetLength(1);
+                int multi = 0;
+                for (int count = 0; count < n; count++)
                 {
-
-                    int count = 0;
-                    matrixC[i, j] = 0;
-                    while (count < n)
-                    {
-                        Console.WriteLine("   A (" + i + ", " + count + ") = " + matrixA[i, count]);
-                        Console.WriteLine("   B (" + count + ", " + j + ") = " + matrixB[count, j]);
-                        Console.WriteLine("  AxB = " + matrixA[i, count] * matrixB[count, j]);
-
-
-                        matrixC[i, j] = matrixC[i, j] + matrixA[i, count] * matrixB[count, j];
-                        count++;
-                    }
-                    Console.WriteLine("C(" + i + ", " + j + ") = " + matrixC[i, j] + "    ");
+                    multi = matA[k, count] * matB[count, l];
+                    sum = sum + multi;
                 }
-                Console.WriteLine("");
+                return sum;
             }
 
+            int m = rand.Next(3, 5);
+            int n = rand.Next(3, 5);
+            Console.WriteLine("Матрица А[" + m + ", " + n + "]");
+            Console.WriteLine("--------------------");
+            int[,] matrixA = Matrix(m, n);
+            Console.WriteLine("--------------------");
+            Console.WriteLine("");
+
+            int k = rand.Next(3, 5);
+            int l = rand.Next(3, 5);
+            Console.WriteLine("Матрица B[" + k + ", " + l + "]");
+            Console.WriteLine("--------------------");
+            int[,] matrixB = Matrix(k, l);
+            Console.WriteLine("--------------------");
+            Console.WriteLine("");
+
+            if (n != k)
+            {
+                Console.WriteLine("Операция матричного умножения C = AB не определена.");
+                Console.WriteLine("Число столбцов матрицы A не совпадает с числом строк матрицы B.");
+            }
+            else
+            {
+                Console.WriteLine("Матрица C = AB[" + m + ", " + l + "]");
+                Console.WriteLine("--------------------");
+                int[,] matrixC = new int[m, l];
+                for (int i = 0; i < m; i++)
+                {
+                    for (int j = 0; j < l; j++)
+                    {
+                        matrixC[i, j] = Multiplication(i, j, matrixA, matrixB);
+                        Console.Write(matrixC[i, j] + "   ");
+                    }
+                    Console.WriteLine("");
+                }
+                Console.WriteLine("--------------------");
+            }
             Console.WriteLine("=====================================================");
             Console.Write("Press any key to continue . . . ");
             Console.ReadKey(true);
