@@ -53,15 +53,17 @@ void WayHome(int k, int l, int[,] methodArray)
 {
     while (k != 4 & l != 4)
     {
-                if (Left(k, l, methodArray) == true)
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if (Left(i, j, methodArray) == true)
                 {
-                    l = l-1;
-                    if (k == 0 & l == 0) mod++;
+                    k = i;
+                    l = j;
+                    if (i == 0 & j == 0) mod++;
                     WayHome(k, l, methodArray);
                 }
-                
-                
-                
                 else if (Up(i, j, methodArray) == true)
                 {
                     k = i;
@@ -84,13 +86,14 @@ void WayHome(int k, int l, int[,] methodArray)
                     WayHome(k, l, methodArray);
                 }
                 else Console.WriteLine("Из точки [0, 0] в точку [4, 4] пкти нет");
+            }
+        }
     }
 
     if (mod == 2) Console.WriteLine("Из точки [0, 0] в точку [4, 4] пути нет");
     else if (k == 4 & l == 4) Console.WriteLine("Из точки [0, 0] в точку [4, 4] путь есть");
 }
-
-
 int m = 0;
 int n = 0;
+
 WayHome(m, n, array01);
