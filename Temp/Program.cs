@@ -25,58 +25,35 @@ for (int i = 0; i < 5; i++)
     Console.WriteLine("");
 }
 
-
-bool Left(int i, int j, int[,] curArray)
-{
-    if (j - 1 < 0) return false;
-    if (curArray[i, j - 1] == 1) return true;
-    else return false;
-}
-bool Right(int i, int j, int[,] curArray)
-{
-    if (j + 1 > 4) return false;
-    if (curArray[i, j + 1] == 1) return true;
-    else return false;
-}
-bool Up(int i, int j, int[,] curArray)
-{
-    if (i - 1 < 0) return false;
-    if (curArray[i - 1, j] == 1) return true;
-    else return false;
-}
-bool Down(int i, int j, int[,] curArray)
-{
-    if (i + 1 > 4) return false;
-    if (curArray[i + 1, j] == 1) return true;
-    else return false;
-}
-
 int mod = 0;
 string direction = "down";
 
 string WayHome(int k, int l, int[,] methodArray)
 {
-    // bool GoToRight()
-    // {
-    //     if (Right(k, l, methodArray) == true)
-    //     {
-    //         Console.WriteLine("mod на входе = " + mod + "   " + direction);
-    //         Console.WriteLine("Мы на k = " + k + " l = " + l);
-    //         l = l + 1;
-    //         Console.WriteLine("Идем вправо на k = " + k + " l = " + l);
-    //         if (k == 4 & l == 4) mod = 4;
-    //         if (k == 0 & l == 0) mod++;
-    //         Console.WriteLine("mod на выходе = " + mod);
-    //         direction = "right";
-    //         Console.WriteLine("");
-    //         Thread.Sleep(1000);
-    //         return true;
-    //     }
-    //     else return false;
-    // }
+    bool GoToRight()
+    {
+        if (l + 1 > 4) return false;
+        else if (methodArray[k, l + 1] == 1)
+        {
+            Console.WriteLine("mod на входе = " + mod + "   " + direction);
+            Console.WriteLine("Мы на k = " + k + " l = " + l);
+            l = l + 1;
+            Console.WriteLine("Идем вправо на k = " + k + " l = " + l);
+            if (k == 4 & l == 4) mod = 4;
+            if (k == 0 & l == 0) mod++;
+            Console.WriteLine("mod на выходе = " + mod);
+            direction = "right";
+            Console.WriteLine("");
+            Thread.Sleep(1000);
+            return true;
+        }
+        else return false;
+    }
+
     bool GoToDown()
     {
-        if (Down(k, l, methodArray) == true)
+        if (k + 1 > 4) return false;
+        else if (methodArray[k + 1, l] == 1) 
         {
             Console.WriteLine("mod на входе = " + mod + "   " + direction);
             Console.WriteLine("Мы на k = " + k + " l = " + l);
@@ -92,9 +69,11 @@ string WayHome(int k, int l, int[,] methodArray)
         }
         else return false;
     }
+    
     bool GoToLeft()
     {
-        if (Left(k, l, methodArray) == true)
+        if (l - 1 < 0) return false;
+        else if (methodArray[k, l - 1] == 1) 
         {
             Console.WriteLine("mod на входе = " + mod + "   " + direction);
             Console.WriteLine("Мы на k = " + k + " l = " + l);
@@ -110,9 +89,11 @@ string WayHome(int k, int l, int[,] methodArray)
         }
         else return false;
     }
+
     bool GoToUp()
     {
-        if (Up(k, l, methodArray) == true)
+        if (k - 1 < 0) return false;
+        else if (methodArray[k - 1, l] == 1)
         {
             Console.WriteLine("mod на входе = " + mod + "   " + direction);
             Console.WriteLine("Мы на k = " + k + " l = " + l);
@@ -128,6 +109,7 @@ string WayHome(int k, int l, int[,] methodArray)
         }
         else return false;
     }
+
     while (mod < 2)
     {
         if (direction == "left")
