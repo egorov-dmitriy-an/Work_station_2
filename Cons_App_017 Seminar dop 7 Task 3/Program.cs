@@ -68,7 +68,6 @@ namespace ConsoleApp
             List<int> listStroka = new List<int>();
             List<int> listStolb = new List<int>();
 
-
             string WayHome(int k, int l, int[,] methodArray)
             {
                 bool GoToRight()
@@ -197,16 +196,20 @@ namespace ConsoleApp
             }
             int m = 0;
             int n = 0;
-            string finish =WayHome(m, n, array01);
+            string finish = WayHome(m, n, array01);
             int[] xArray = listStroka.ToArray();
             int[] yArray = listStolb.ToArray();
             Console.Clear();
-            for (int i = 0; i < xArray.Length; i++)
+            if (xArray.Length == 0) Console.WriteLine(finish);
+            else
             {
-                array01[listStroka[i], listStolb[i]] =  5;
-                Console.Clear();
-                Print(array01);
-                Thread.Sleep(500);
+                for (int i = 0; i < xArray.Length; i++)
+                {
+                    array01[listStroka[i], listStolb[i]] =  5;
+                    Console.Clear();
+                    Print(array01);
+                    Thread.Sleep(500);
+                }
             }
             Console.WriteLine(finish);
             Console.WriteLine("Press any key to continue . . . ");
