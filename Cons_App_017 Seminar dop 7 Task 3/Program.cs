@@ -11,6 +11,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
+            Console.Clear();
             Random rand = new Random();
             int[,] array01 = new int[5, 5];
                 for (int i = 0; i < 5; i++)
@@ -70,128 +71,92 @@ namespace ConsoleApp
 
             string WayHome(int k, int l, int[,] methodArray)
             {
-                bool GoToRight()
+                
+                void GoToRight()
                 {
-                    if (Right(k, l, methodArray) == true)
-                    {
                         l = l + 1;
                         if (k == 4 & l == 4) mod = 4;
-                        if (k == 0 & l == 0) mod++;
+                        Console.WriteLine("Идем вправо: (" + k + ", " + l +")");
                         listStroka.Add(k);
                         listStolb.Add(l);
                         direction = "right";
-                        return true;
-                    }
-                    else return false;
+                        Thread.Sleep(500);
                 }
-                bool GoToDown()
+                void GoToDown()
                 {
-                    if (Down(k, l, methodArray) == true)
-                    {
                         k = k + 1;
                         if (k == 4 & l == 4) mod = 4;
-                        if (k == 0 & l == 0) mod++;
+                        Console.WriteLine("Идем вниз:   (" + k + ", " + l +")");
                         listStroka.Add(k);
                         listStolb.Add(l);
                         direction = "down";
-                        return true;
-                    }
-                    else return false;
+                        Thread.Sleep(500);
                 }
-                bool GoToLeft()
+                void GoToLeft()
                 {
-                    if (Left(k, l, methodArray) == true)
-                    {
                         l = l - 1;
-                        if (k == 4 & l == 4) mod = 4;
                         if (k == 0 & l == 0) mod++;
+                        Console.WriteLine("Идем влево:  (" + k + ", " + l +")");
                         listStroka.Add(k);
                         listStolb.Add(l);
                         direction = "left";
-                        return true;
-                    }
-                    else return false;
+                        Thread.Sleep(500);
                 }
-                bool GoToUp()
+                void GoToUp()
                 {
-                    if (Up(k, l, methodArray) == true)
-                    {
                         k = k - 1;
-                        if (k == 4 & l == 4) mod = 4;
                         if (k == 0 & l == 0) mod++;
+                        Console.WriteLine("Идем вверх:  (" + k + ", " + l +")");
                         listStroka.Add(k);
                         listStolb.Add(l);
                         direction = "up";
-                        return true;
-                    }
-                    else return false;
+                        Thread.Sleep(500);
                 }
 
                 while (mod < 2)
                 {
-                    if (direction == "left")
+                    if(methodArray[1, 0] == 0 & methodArray[0,1] == 0)
                     {
-                        GoToDown();
-                        if (GoToDown() == false)
-                        {
-                            GoToLeft();
-                            if (GoToLeft() == false)
-                            {
-                                GoToUp();
-                                if (GoToUp() == false) GoToRight();
-                            }
-                        }
+                        mod =3;
+                        WayHome(k, l, methodArray);
+                    }
+                    else if (direction == "left")
+                    {
+                        if (Down(k, l, methodArray) == true) GoToDown();
+                        else if (Left(k, l, methodArray) == true) GoToLeft();
+                        else if (Up (k, l, methodArray) == true ) GoToUp();
+                        else GoToRight();
                         WayHome(k, l, methodArray);
                     }
                     else if (direction == "up")
                     {
-                        GoToLeft();
-                        if (GoToLeft() == false)
-                        {
-                            GoToUp();
-                            if (GoToUp() == false)
-                            {
-                                GoToRight();
-                                if (GoToRight() == false) GoToDown();
-                            }
-                        }
+                        if (Left(k, l, methodArray) == true) GoToLeft();
+                        else if (Up(k, l, methodArray) == true) GoToUp();
+                        else if (Right (k, l, methodArray) == true ) GoToRight();
+                        else GoToDown();
                         WayHome(k, l, methodArray);
                     }
                     else if (direction == "right")
                     {
-                        GoToUp();
-                        if (GoToUp() == false)
-                        {
-                            GoToRight();
-                            if (GoToRight() == false)
-                            {
-                                GoToDown();
-                                if (GoToDown() == false) GoToLeft();
-                            }
-                        }
+                        if (Up(k, l, methodArray) == true) GoToUp();
+                        else if (Right(k, l, methodArray) == true) GoToRight();
+                        else if (Down (k, l, methodArray) == true ) GoToDown();
+                        else GoToLeft();
                         WayHome(k, l, methodArray);
                     }
                     else if (direction == "down")
                     {
-                        GoToRight();
-                        if (GoToRight() == false)
-                        {
-                            GoToDown();
-                            if (GoToDown() == false)
-                            {
-                                GoToLeft();
-                                if (GoToLeft() == false) GoToUp();
-                            }
-                        }
+                        if (Right(k, l, methodArray) == true) GoToRight();
+                        else if (Down(k, l, methodArray) == true) GoToDown();
+                        else if (Left (k, l, methodArray) == true ) GoToLeft();
+                        else GoToUp();
                         WayHome(k, l, methodArray);
                     }
-                    else mod = 3;
-                    WayHome(k, l, methodArray);
                 }
                 string result = string.Empty;
-                if (mod == 2) result = "Из [0, 0] не дойти по единицам до [4, 4]";
-                if (mod == 3) result = "Из [0, 0] нет ни одного хода";
-                if (mod == 4) result = "Из [0, 0] в [4, 4] можно дойти по единицам)";
+                if (mod == 2) result = "Дважды вернулись в точку [0, 0], поэтому не дойти по единицам до [4, 4]";
+                if (mod == 3) result = "Из [0, 0] нет вообще ни одного хода по единицам";
+                if (mod == 4) result = "Из [0, 0] в [4, 4] можно дойти по единицам :)";
                 return result;
             }
             int m = 0;
@@ -199,14 +164,20 @@ namespace ConsoleApp
             string finish = WayHome(m, n, array01);
             int[] xArray = listStroka.ToArray();
             int[] yArray = listStolb.ToArray();
+            Console.Write("Путь обозначим двойками");
+            Thread.Sleep(5000);
             Console.Clear();
-            if (xArray.Length == 0) Console.WriteLine(finish);
+            if (xArray.Length == 0) 
+            {
+                Print(array01);
+            }
             else
             {
-                for (int i = 0; i < xArray.Length; i++)
+                for (int i = 1; i < xArray.Length; i++)
                 {
-                    array01[listStroka[i], listStolb[i]] =  5;
+                    array01[listStroka[i-1], listStolb[i-1]] = 2;
                     Console.Clear();
+                    array01[0, 0] = 2;
                     Print(array01);
                     Thread.Sleep(500);
                 }
