@@ -7,7 +7,7 @@
 Console.Write("Введите размер массива: ");
 int length = Convert.ToInt32(Console.ReadLine());
 Random rand = new Random();
-int [] array = new int[length];
+int[] array = new int[length];
 Console.Write("");
 
 for (int i = 0; i < length; i++)
@@ -20,3 +20,14 @@ Console.WriteLine("");
 Console.Write("Введите число m: ");
 int m = Convert.ToInt32(Console.ReadLine());
 
+int summa = 0;
+int leng = rand.Next(1, length + 1);
+List<int> result = new List<int>();
+
+if (summa < m)
+{
+    for (int i = 0; i < leng; i++)
+    {
+
+    }
+}
