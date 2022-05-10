@@ -1,5 +1,5 @@
 ﻿Console.WriteLine();
-Console.WriteLine("------------Контрольная работа---------------");
+Console.WriteLine("-------------Контрольная работа--------------");
 Console.Write("Введите количество строк исходного массива: "); // Зададим количество элементов массива.
 int length = Convert.ToInt32(Console.ReadLine());
 
@@ -41,7 +41,7 @@ for (int k = 0; k < length; k++)
     if (textArray[k].Length <= 3)
     {
         newTextArray[count] = textArray[k];
-        Console.Write("'" + newTextArray[count]+"'");
+        Console.Write("'" + newTextArray[count] + "'");
         if (count != newLength - 1)
         {
             Console.Write(", ");
@@ -50,5 +50,5 @@ for (int k = 0; k < length; k++)
     }
 }
 Console.WriteLine("]");
-Console.WriteLine("------------------Конец----------------------");
+Console.WriteLine("-------------------Конец---------------------");
 Console.WriteLine();
