@@ -9,9 +9,17 @@ namespace ConsoleApp
             Console.WriteLine();
             Console.WriteLine("-------------Контрольная работа--------------");
 
-            // Предложим задать количество элементов массива.
+            // Предложим задать количество элементов массива и проверим введенные данные.
             Console.Write("Введите количество строк исходного массива: ");
-            int length = Convert.ToInt32(Console.ReadLine());
+            int length;
+            while (true)
+            {
+                if (int.TryParse(Console.ReadLine(), out length))
+                {
+                    if (length > 0) break;
+                }
+                Console.Write("Введите натуральное число: ");
+            }
 
             // Инициализируем массив и предложим заполнить его строками.
             string[] textArray = new string[length];
@@ -42,11 +50,11 @@ namespace ConsoleApp
             Console.Write("Новый массив: ");
 
             // Инициализируем новый массив.
-            int count = 0;
+            int count = 0; // Счетчик для индексов нового массива
             string[] newTextArray = new string[newLength];
-            Console.Write("[");
 
             // Заполним массив строками, длина которых менее или равна 3 и выведем его.
+            Console.Write("[");
             for (int k = 0; k < length; k++)
             {
                 if (textArray[k].Length <= 3)
